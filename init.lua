@@ -525,6 +525,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  zls = {},
 }
 
 -- Setup neovim lua configuration
