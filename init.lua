@@ -154,12 +154,13 @@ require('lazy').setup({
 
   {
     -- Theme inspired by Atom
-    'gbprod/nord.nvim',
+    'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'nord'
+      vim.cmd.colorscheme 'onedark'
     end,
   },
+
 
   {
     -- Set lualine as statusline
@@ -168,7 +169,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'nord',
+        theme = 'onedark',
         component_separators = '|',
         section_separators = '',
       },
