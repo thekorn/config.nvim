@@ -2,4 +2,13 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+    {
+        'navarasu/onedark.nvim',
+        priority = 1000,
+        init = function()
+            vim.cmd.colorscheme 'onedark'
+            vim.cmd.hi 'Comment gui=none'
+        end,
+    },
+}
