@@ -98,11 +98,8 @@ return {
                 ---@param bufnr? integer some lsp support methods only in specific files
                 ---@return boolean
                 local function client_supports_method(client, method, bufnr)
-                    if vim.fn.has("nvim-0.11") == 1 then
-                        return client:supports_method(method, bufnr)
-                    else
-                        return client.supports_method(method, { bufnr = bufnr })
-                    end
+                    -- we are on neovim 0.11 or newer
+                    return client:supports_method(method, bufnr)
                 end
 
                 -- The following two autocommands are used to highlight references of the
@@ -222,15 +219,26 @@ return {
                 -- cmd = { ... },
                 -- filetypes = { ... },
                 -- capabilities = {},
-                -- settings = {
-                --   Lua = {
-                --     completion = {
-                --       callSnippet = 'Replace',
-                --     },
-                --     -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                --     -- diagnostics = { disable = { 'missing-fields' } },
-                --   },
-                -- },
+                settings = {
+                    Lua = {
+                        --     completion = {
+                        --       callSnippet = 'Replace',
+                        --     },
+                        --     -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                        diagnostics = {
+                            --disable = { 'missing-fields' }
+                            globals = { "vim" },
+                        },
+                        workspace = {
+                            -- Make the server aware of Neovim runtime files
+                            library = vim.api.nvim_get_runtime_file("", true),
+                        },
+                        -- Do not send telemetry data containing a randomized but unique identifier
+                        telemetry = {
+                            enable = false,
+                        },
+                    },
+                },
             },
         }
 

@@ -3,7 +3,7 @@ return {
     config = function()
         require("kanagawa").setup({
             compile = true,
-            overrides=function(color)
+            overrides = function()
                 return {
                     ["@markup.link.url.markdown_inline"] = { link = "Special" }, -- (url)
                     ["@markup.link.label.markdown_inline"] = { link = "WarningMsg" }, -- [label]
@@ -12,11 +12,11 @@ return {
                     ["@markup.list.markdown"] = { link = "Function" }, -- + list
                     ["@markup.quote.markdown"] = { link = "Error" }, -- > blockcode
                 }
-            end
-        });
-        vim.cmd("colorscheme kanagawa");
+            end,
+        })
+        vim.cmd("colorscheme kanagawa")
     end,
     build = function()
-        vim.cmd("KanagawaCompile");
-    end
+        vim.cmd("KanagawaCompile")
+    end,
 }
