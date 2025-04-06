@@ -214,7 +214,7 @@ return {
             -- But for many setups, the LSP (`ts_ls`) will work just fine
             -- ts_ls = {},
             --
-
+            -- nil_ls = {}, -- nix language server
             lua_ls = {
                 -- cmd = { ... },
                 -- filetypes = { ... },
@@ -226,7 +226,7 @@ return {
                         --     },
                         --     -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
                         diagnostics = {
-                            --disable = { 'missing-fields' }
+                            disable = { "missing-fields" },
                             globals = { "vim" },
                         },
                         workspace = {
@@ -258,7 +258,7 @@ return {
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
             "stylua", -- Used to format Lua code
-            "prettierd", -- Used to format javascript and typescript code
+            "biome", -- Used to format javascript and typescript code
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
