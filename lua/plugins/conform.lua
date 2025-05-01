@@ -10,6 +10,14 @@ return {
             -- Conform will run the first available formatter
             javascript = { "biome", "prettierd", stop_after_first = true },
             typescript = { "biome", "prettierd", stop_after_first = true },
+            --typescript = function()
+            --    local cfg = require("conform.util").root_file({ "biome.json", "biome.jsonc" })
+            --    if cfg then
+            --        return { "biome", "prettierd", stop_after_first = true }
+            --    else
+            --        return { "prettierd", stop_after_first = true }
+            --    end
+            --end,
             nix = { "alejandra", stop_after_first = true },
         },
         format_on_save = {
